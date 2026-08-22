@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Preprocessing{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Data Preprocessing</h1>
+
+    <div class="file-list">
+        {% for item in preprocessing_outputs %}
+        <div class="file-item">
+            <h3>{{ item.title }}</h3>
+            <p class="muted">{{ item.description }}</p>
+            <p>
+                {{ item.name }} · {{ item.rows }} rows · {{ item.columns }} columns ·
+                {{ item.missing_total }} missing values
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="workflow">
+        <h2>Preprocessing Workflow</h2>
+        <p>
+            Raw Dataset → Cleaning → Missing Values →
+            Encoding → Scaling → Processed Dataset
+        </p>
+    </div>
+</div>
+
+{% endblock %}

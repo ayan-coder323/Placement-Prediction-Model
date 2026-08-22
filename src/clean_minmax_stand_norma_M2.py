@@ -9,6 +9,7 @@
 
 
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
@@ -17,8 +18,9 @@ from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
 # ------------------------------------------------------------
 # Load Dataset
 # ------------------------------------------------------------
-INPUT_FILE = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv"
-OUTPUT_FILE = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_minmax_stand_norma_M2.csv"
+DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
+INPUT_FILE = DATASET_DIR / "placement_predict_50K_Raw.csv"
+OUTPUT_FILE = DATASET_DIR / "clean_minmax_stand_norma_M2.csv"
 
 
 def main() -> None:
@@ -121,6 +123,7 @@ def main() -> None:
     # ---------------------------------------------------
     # Step 8: Save Preprocessed Dataset
     # ---------------------------------------------------
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUTPUT_FILE, index=False)
 
     print("\nPreprocessed dataset saved successfully.")

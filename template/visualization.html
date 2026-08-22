@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Visualization{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Data Visualization</h1>
+
+    {% for section in visualization_sections %}
+    <h2>{{ section.title }}</h2>
+    <div class="image-grid">
+        {% for image in section.images %}
+        <div class="image-card">
+            <img src="{{ image.url }}" alt="{{ image.caption }}">
+            <p>{{ image.caption }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

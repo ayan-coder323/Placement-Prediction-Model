@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 
 
@@ -24,8 +26,9 @@ import pandas as pd
 # ------------------------------------------------------------
 
 
-input_file = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv"
-output_file = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_del_mean_model_M2.csv"
+DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
+input_file = DATASET_DIR / "placement_predict_50K_Raw.csv"
+output_file = DATASET_DIR / "clean_del_mean_model_M2.csv"
 
 
 df = pd.read_csv(input_file)
@@ -558,6 +561,7 @@ final_result = pd.concat(
 # ============================================================
 
 
+output_file.parent.mkdir(parents=True, exist_ok=True)
 final_result.to_csv(
    output_file,
    index=False

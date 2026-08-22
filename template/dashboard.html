@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Placement Dashboard</h1>
+
+    <div class="cards stats">
+        {% for item in dashboard_stats %}
+        <div class="card">
+            <h3>{{ item.label }}</h3>
+            <div class="stat-value">{{ item.value }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Dataset Details</h2>
+    <div class="card">
+        <p><strong>Dataset:</strong> {{ raw_dataset.name }}</p>
+        <p><strong>Columns:</strong> {{ raw_dataset.columns_list | join(", ") }}</p>
+        <p><strong>Missing Values:</strong> {{ raw_dataset.missing_total }}</p>
+    </div>
+</div>
+
+{% endblock %}

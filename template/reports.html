@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Placement Reports</h1>
+
+    <h2>Statistical Summary</h2>
+    <div class="detail-table small-table">
+        <table>
+            <tr>
+                {% for key in summary_headers %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in summary_rows %}
+            <tr>
+                {% for value in row.values() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>Top Correlations with PlacementStatus</h2>
+    <div class="cards stats">
+        {% for item in correlation_highlights %}
+        <div class="card">
+            <h3>{{ item.feature }}</h3>
+            <div class="stat-value">{{ "%.3f"|format(item.score) }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Source Files</h2>
+    <div class="file-list">
+        {% for file in report_files %}
+        <div class="file-item">
+            <h3>{{ file.name }}</h3>
+            <p class="muted">{{ file.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

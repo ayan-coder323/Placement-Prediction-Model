@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>About Placement Prediction System</h1>
+
+    <h2>Project Introduction</h2>
+    <p>
+        Placement Prediction System uses machine learning techniques
+        to analyze student academic and skill-related information
+        and predict placement outcomes.
+    </p>
+
+    <h2>Objectives</h2>
+    <ul>
+        <li>Analyze student academic performance.</li>
+        <li>Analyze technical and soft skills.</li>
+        <li>Predict placement opportunities.</li>
+        <li>Identify important placement factors.</li>
+        <li>Support placement officers in decision making.</li>
+    </ul>
+
+    <h2>Technologies Used</h2>
+    <ul>
+        <li>Python</li>
+        <li>Flask</li>
+        <li>Pandas</li>
+        <li>NumPy</li>
+        <li>Scikit-learn</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Machine Learning</li>
+    </ul>
+
+    <h2>Data Source</h2>
+    <p>
+        The website now reads the generated CSV and image outputs from the existing
+        preprocessing and EDA scripts.
+    </p>
+    <div class="card">
+        <p><strong>Raw dataset:</strong> {{ raw_dataset.name }}</p>
+        <p><strong>Rows:</strong> {{ raw_dataset.rows }}</p>
+        <p><strong>Columns:</strong> {{ raw_dataset.columns }}</p>
+    </div>
+</div>
+
+{% endblock %}

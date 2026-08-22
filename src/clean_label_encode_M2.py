@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 
 from sklearn.preprocessing import LabelEncoder
@@ -14,7 +15,9 @@ from sklearn.impute import SimpleImputer
 # ==========================================================
 
 
-df = pd.read_csv("E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv")
+DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
+DATASET_PATH = DATASET_DIR / "placement_predict_50K_Raw.csv"
+df = pd.read_csv(DATASET_PATH)
 
 
 # Create a copy for processing
@@ -162,9 +165,10 @@ print(data.isnull().sum())
 # ==========================================================
 
 
+DATASET_DIR.mkdir(parents=True, exist_ok=True)
 data.to_csv(
-        "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_label_encode_M2.csv",
-        index=False
+   DATASET_DIR / "clean_label_encode_M2.csv",
+   index=False
 )
 
 

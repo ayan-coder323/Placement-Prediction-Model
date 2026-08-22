@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}ML Models{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Machine Learning Models</h1>
+
+    <div class="card">
+        <p>{{ model_note }}</p>
+    </div>
+
+    <div class="file-list">
+        <div class="file-item">
+            <h3>Available preprocessing outputs</h3>
+            <p class="muted">
+                The completed scripts already generate cleaned datasets, encodings,
+                scaling variants, and EDA artifacts. Those outputs are now surfaced
+                on the website.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

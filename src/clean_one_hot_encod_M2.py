@@ -1,6 +1,7 @@
 ##—-----------------------------------------------------------------------------------------------
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 
 from sklearn.preprocessing import OneHotEncoder
@@ -15,7 +16,9 @@ from sklearn.impute import SimpleImputer
 # ==========================================================
 
 
-df = pd.read_csv("E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv")
+DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
+DATASET_PATH = DATASET_DIR / "placement_predict_50K_Raw.csv"
+df = pd.read_csv(DATASET_PATH)
 
 
 # Create a copy for processing
@@ -224,9 +227,10 @@ print(final_output.isnull().sum())
 # ==========================================================
 
 
+DATASET_DIR.mkdir(parents=True, exist_ok=True)
 final_output.to_csv(
-   "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_one_hot_encode_M2.csv",
-   index=False
+    DATASET_DIR / "clean_one_hot_encoding_M2.csv",
+    index=False
 )
 
 
@@ -236,5 +240,5 @@ print("\n======================================")
 print("Original dataset is NOT modified.")
 print("Cleaning and One-Hot Encoding completed.")
 print("Output file:")
-print("clean_one_hot_encode_M2.csv")
+print("clean_one_hot_encoding_M2.csv")
 print("======================================")

@@ -1,0 +1,33 @@
+MULTINOMIAL LOGISTIC REGRESSION RESULTS
+===========================================================================
+
+Dataset: E:\Apps\pythonProject\ML_Project[Placement_predict]\dataset\final_preprocess_M2.csv
+Target: CGPA_Tier
+Number of classes: 3
+
+CLASS MAPPING
+----------------------------------------
+0 = 0
+1 = 1
+2 = 2
+
+MODEL PERFORMANCE
+----------------------------------------
+Accuracy: 0.9913
+Accuracy (%): 99.13%
+Precision: 0.9913
+Recall: 0.9913
+F1 Score: 0.9913
+Cross-Entropy Loss: 0.0235
+
+CLASSIFICATION REPORT
+----------------------------------------
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      3336
+           1       0.99      0.99      0.99      3347
+           2       0.99      0.99      0.99      3317
+
+    accuracy                           0.99     10000
+   macro avg       0.99      0.99      0.99     10000
+weighted avg       0.99      0.99      0.99     10000

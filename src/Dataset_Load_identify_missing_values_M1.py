@@ -1,58 +1,65 @@
-import pandas as pd
+from pathlib import Path
+
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 
 
-# 1. Load the dataset (Make sure 'dataset.csv' is in your project directory)
-df = pd.read_csv("E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv")
+DATASET_PATH = Path(__file__).resolve().parent.parent / "dataset" / "placement_predict_50K_Raw.csv"
 
+# 1. Load the dataset
+# Tip: Use raw string syntax (r"...") or forward slashes to prevent Windows path escaping issues
+df = pd.read_csv(DATASET_PATH)
 
 # 2. Retrieve data in different ways
-
-
-# View the first 5 rows
 print("--- First 5 Rows ---")
 print(df.head())
 
-
-# Print specific columns
-print("----print 6 columns----")
+print("\n---- First 6 Columns ----")
 subset = df.iloc[:, 0:6]
 print(subset)
 
-# GEnerate stastical metrics for numeric columns
-print("-----------------------------------")
-print(" 17. Statistical Overview")
-print("-----------------------------------")
-print(df.describe())
-
-
-# 2. Identify missing values per column
+# 3. Identify missing values per column
 missing_counts = df.isnull().sum()
-print("-----Missing Values Per Column:----------")
-
-
+print("\n----- Missing Values Per Column: ----------")
 print(missing_counts)
 print("-" * 40)
 
-# Total missing values
-total_missing = df.isnull().sum().sum()
-print("-----------------------------------")
-print("15. Total Missing Values:", total_missing,"\n")
-
-
-# 3. Detect duplicate rows
-# Keeps the first occurrence and marks subsequent duplicates as True
+# 4. Detect duplicate rows
 duplicate_rows = df[df.duplicated()]
 print(f"Total duplicate rows detected: {len(duplicate_rows)}")
 print(duplicate_rows)
 print("-" * 40)
 
-
-# 4. Produce a missingness heatmap
-plt.figure(figsize=(10, 6))
-# cbar=False hides the color bar; yticklabels=False hides row numbers for cleaner visuals; :
-# cmap="viridis" Uses a purple-to-yellow color scale for high contrast.
+# 5. Produce a missingness heatmap
+fig = plt.figure()
+fig.set_figwidth(10)
+fig.set_figheight(6)
+# Fixed comment syntax and trailing colon below
 sns.heatmap(df.isnull(), cbar=False, yticklabels=False, cmap="viridis")
 plt.title("Missing Values Heatmap")
 plt.show()
+categorical_columns = [column for column in df.columns if df[column].dtype == "object"]
+categorical_df = df[categorical_columns]
+print("-----------------------------------")
+print("12. Display Categorical (Object) Attributes:")
+print("-----------------------------------")
+print(categorical_df)
+print("Missing Values in Categorical Attributes")
+print("=" * 50)
+print(categorical_df.isnull().sum())
+print("\n13. Total Missing Categorical Values:", categorical_df.isnull().sum().sum())
+print("-----------------------------------")
+print("14. Missing Values in Each Column")
+print("-" * 40)
+print(df.isnull().sum())
+total_missing = df.isnull().sum().sum()
+print("-----------------------------------")
+print("15. Total Missing Values:", total_missing)
+print("----------------------------------")
+duplicate_count = df.duplicated().sum()
+print("16. Number of Duplicate Records:", duplicate_count)
+print("-----------------------------------")
+print("17. Statistical Overview")
+print("-----------------------------------")
+print(df.describe())

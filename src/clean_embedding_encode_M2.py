@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 
 
@@ -10,7 +11,22 @@ import numpy as np
 # ==========================================================
 
 
-df = pd.read_csv("E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_target_encode_M2.csv")
+DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
+
+# Prefer the target-encoded input if available; otherwise fall back to the raw dataset.
+target_file = DATASET_DIR / "clean_target_encode_M2.csv"
+raw_file = DATASET_DIR / "placement_predict_50K_Raw.csv"
+
+if target_file.exists():
+    print(f"Using input file: {target_file}")
+    df = pd.read_csv(target_file)
+elif raw_file.exists():
+    print(f"Warning: {target_file.name} not found. Falling back to raw dataset: {raw_file.name}")
+    df = pd.read_csv(raw_file)
+else:
+    raise FileNotFoundError(
+        f"Input file not found. Place either '{target_file.name}' or '{raw_file.name}' in {DATASET_DIR}"
+    )
 
 
 # Create copy
@@ -227,8 +243,9 @@ print(final_output.isnull().sum())
 # ==========================================================
 
 
+DATASET_DIR.mkdir(parents=True, exist_ok=True)
 final_output.to_csv(
-   "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\clean_embedding_encode_M2.csv",
+   DATASET_DIR / "clean_embedded_encode_M2.csv",
    index=False
 )
 

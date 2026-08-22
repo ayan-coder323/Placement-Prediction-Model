@@ -3,10 +3,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-
+from pathlib import Path
 # Ensure the output directory exists
-output_dir = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\outputs\\Boxplots_correlation"
+output_dir = Path(__file__).resolve().parent.parent / "outputs" / "Boxplots_correlation"
 os.makedirs(output_dir, exist_ok=True)
 
 
@@ -14,8 +13,8 @@ os.makedirs(output_dir, exist_ok=True)
 # 1. Load placement_predict_50k Dataset
 # -------------------------------------------------------------
 
-
-df = pd.read_csv("E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv")
+DATASET_PATH = Path(__file__).resolve().parent.parent / "dataset" / "placement_predict_50K_Raw.csv"
+df = pd.read_csv(DATASET_PATH)
 
 
 print("Dataset Loaded Successfully. Shape:", df.shape)

@@ -9,8 +9,8 @@ import seaborn as sns
 # -------------------------------
 # Configuration
 # -------------------------------
-DATASET_PATH = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\dataset\\placement_predict_50K_Raw.csv"   # Change to your dataset name
-OUTPUT_FOLDER = "E:\\Apps\\pythonProject\\ML_Project[Placement_predict]\\outputs\\EDA_Analysis"
+DATASET_PATH = str(Path(__file__).resolve().parent.parent / "dataset" / "placement_predict_50K_Raw.csv")
+OUTPUT_FOLDER = str(Path(__file__).resolve().parent.parent / "outputs" / "EDA_Analysis")
 
 
 # Create output folder

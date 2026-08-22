@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Dataset{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Placement Dataset</h1>
+
+    <div class="cards stats">
+        <div class="card">
+            <h3>Total Students</h3>
+            <div class="stat-value">{{ raw_dataset.rows }}</div>
+        </div>
+        <div class="card">
+            <h3>Total Features</h3>
+            <div class="stat-value">{{ raw_dataset.columns }}</div>
+        </div>
+        <div class="card">
+            <h3>Missing Values</h3>
+            <div class="stat-value">{{ raw_dataset.missing_total }}</div>
+        </div>
+        <div class="card">
+            <h3>Duplicate Records</h3>
+            <div class="stat-value">{{ raw_dataset.duplicate_total }}</div>
+        </div>
+    </div>
+
+    <h2>Columns</h2>
+    <div class="card">
+        <p>{{ raw_dataset.columns_list | join(", ") }}</p>
+    </div>
+
+    <h2>Missing Values by Column</h2>
+    <div class="detail-table small-table">
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Missing</th>
+            </tr>
+            {% for item in raw_dataset.missing_by_column %}
+            <tr>
+                <td>{{ item.column }}</td>
+                <td>{{ item.missing }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>Sample Records</h2>
+    <div class="detail-table small-table">
+        <table>
+            <tr>
+                {% for column in raw_dataset.columns_list %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in sample_rows %}
+            <tr>
+                {% for column in raw_dataset.columns_list %}
+                <td>{{ row[column] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <h2>Preprocessed Files</h2>
+    <div class="file-list">
+        {% for item in clean_datasets %}
+        <div class="file-item">
+            <h3>{{ item.title }}</h3>
+            <p class="muted">{{ item.description }}</p>
+            <p>{{ item.name }} · {{ item.rows }} rows · {{ item.columns }} columns</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
